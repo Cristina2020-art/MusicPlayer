@@ -1,0 +1,54 @@
+ <!DOCTYPE html>
+ <html>
+ 	<head>
+		<title>Media Player</title>
+	<!--
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    -->
+	 </head>
+	<body>
+		<audio id="music">
+			<source src="music.mp3" />
+		</audio>
+		<button id="btnPlay">Play</button>
+		<button id="btnPause">Pause</button>
+		<button id="btnStop">Stop</button>
+		<input type="range" min="0" id="slider"/>
+	</body>
+	<script>
+	 var playbutton = document.getElementById('btnPlay');
+	var pausebutton = document.getElementById('btnPause');
+	 var stopbutton = document.getElementById('btnStop');
+		
+	playbutton.addEventListener('click' , playMusic);
+	pausebutton.addEventListener('click' , pauseMusic);
+	stopbutton.addEventListener('click', stopMusic);
+		
+	function stopMusic()
+	{
+		document.getElementById('music').pause();
+		document.getElementById('music').currentTime = 0;
+	}
+	
+	function pauseMusic()
+	{
+		document.getElementById('music').pause();
+	}
+	
+	function playMusic()
+	{
+		var song = document.getElementById('music'); 
+		song.play();
+		var length = song.duration;
+		document.getElementById('slider').max = length;
+		var interval = setInterval(function()
+			{
+			document.getElementById('slider').value = song.currentTime;
+		}, 100);
+		
+	}
+		
+	</script>
+ </html>
